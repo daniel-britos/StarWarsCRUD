@@ -1,0 +1,17 @@
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Infrastructure.deps.json
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Infrastructure.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Infrastructure.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Application.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Domain.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Application.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\bin\Debug\net9.0\StarWarsCRUD.Domain.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.AssemblyInfo.cs
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWars.F8058AF3.Up2Date
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\refint\StarWarsCRUD.Infrastructure.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\StarWarsCRUD.Infrastructure.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Infrastructure\obj\Debug\net9.0\ref\StarWarsCRUD.Infrastructure.dll

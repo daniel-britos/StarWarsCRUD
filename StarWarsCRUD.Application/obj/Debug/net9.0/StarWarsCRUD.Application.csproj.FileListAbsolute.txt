@@ -1,0 +1,15 @@
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\bin\Debug\net9.0\StarWarsCRUD.Application.deps.json
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\bin\Debug\net9.0\StarWarsCRUD.Application.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\bin\Debug\net9.0\StarWarsCRUD.Application.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\bin\Debug\net9.0\StarWarsCRUD.Domain.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\bin\Debug\net9.0\StarWarsCRUD.Domain.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.AssemblyInfoInputs.cache
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.AssemblyInfo.cs
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWars.DFF1254E.Up2Date
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\refint\StarWarsCRUD.Application.dll
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\StarWarsCRUD.Application.pdb
+C:\Users\USUARIO\Documents\DEV\PRACTICAS\StarWarsCRUD\StarWarsCRUD.Application\obj\Debug\net9.0\ref\StarWarsCRUD.Application.dll
