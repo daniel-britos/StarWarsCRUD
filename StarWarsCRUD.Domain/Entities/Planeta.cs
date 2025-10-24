@@ -9,7 +9,7 @@ public class Planeta
 
     public TipoClima? Clima { get; private set; }
 
-    // Concurrency token (opcional)
+    // Concurrency token (opcional) para evitar manejo multiples en simultaneo
     public byte[]? RowVersion { get; private set; }
 
     // --- Relación 1:N (Lado "Uno") ---
