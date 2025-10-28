@@ -1,4 +1,5 @@
-﻿using StarWarsCRUD.Api.DTOs.Request.Create;
+﻿/*
+using StarWarsCRUD.Api.DTOs.Request.Create;
 using StarWarsCRUD.Api.DTOs.Response;
 using StarWarsCRUD.Domain.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -38,3 +39,4 @@ public class AutoMapperProfile : Profiles
         // y relaciones N:N normalmente se sincronizan en el service/handler; por eso no se incluye aquí.
     }
 }
+*/

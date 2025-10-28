@@ -1,18 +1,22 @@
-﻿namespace StarWarsCRUD.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+/* 
+ diseño de dominio (DDD
+ */
+namespace StarWarsCRUD.Domain.Entities;
 
 public class Personaje
 {
-    public int Id { get; private set; }    
+    public int Id { get; private set; }
     // al colocar las propiedades en private set evitamos
     // que se modifiquen desde fuera de la clase
+    // no utilizamos [Required] por que ya está en el constructor la validación, tampoco es necesario en el modelbuilder
     public string Nombre { get; private set; }
     public string? Descripcion { get; private set; }
     // RowVersion es una columna
     // especial que ayuda a manejar situaciones donde 
     // múltiples usuarios intentan actualizar el mismo
     // registro al mismo tiempo.
-    public byte[]? RowVersion { get; private set; }    
-    public string Especie { get; private set; } 
+    public byte[]? RowVersion { get; private set; }        
     // FK explícita para mayor claridad / mapping
     // PlanetaNatalId es la clave foránea con Planeta
     public int PlanetaNatalId { get; private set; }
@@ -26,12 +30,6 @@ public class Personaje
     // Relación 1:N lado uno.
     private readonly HashSet<Nave> _naves = new();
     public IReadOnlyCollection<Nave> Naves => _naves;
-
-    public void AgregarNave(Nave nave)
-    {
-        if (nave == null) throw new ArgumentNullException(nameof(nave));
-        _naves.Add(nave);
-    }
 
     // Creamos un constructor en privado para EF Core y un
     // constructor en publico para la creación de instancias válidas
@@ -52,7 +50,13 @@ public class Personaje
         // Sincronización 1:N (lado planeta)
         planetaNatal.AgregarPersonajeNativo(this);
     }
-    
+
+    public void AgregarNave(Nave nave)
+    {
+        if (nave == null) throw new ArgumentNullException(nameof(nave));
+        _naves.Add(nave);
+    }
+
     public void ActualizarDescripcion(string nuevaDescripcion)
     {
         Descripcion = nuevaDescripcion;
@@ -61,6 +65,13 @@ public class Personaje
     public void AgregarAparicionEnPelicula(Pelicula pelicula)
     {
         if (pelicula == null) throw new ArgumentNullException(nameof(pelicula));
-        _peliculas.Add(pelicula);
+
+        // Si .Add() devuelve true, significa que la película no estaba
+        // y la hemos añadido.
+        if (_peliculas.Add(pelicula))
+        {
+            // Sincronizamos el otro lado (Pelicula)
+            pelicula.AgregarPersonaje(this);
+        }
     }
 }

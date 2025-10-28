@@ -4,8 +4,8 @@ public class Pelicula
 {
     public int Id { get; private set; }
     public string Titulo { get; private set; }
-    public DateOnly FechaEstreno { get; private set; }    
-    public byte[]? RowVersion { get; private set; }    
+    public DateOnly FechaEstreno { get; private set; }
+    public byte[]? RowVersion { get; private set; }
 
     private readonly HashSet<Personaje> _personajes = new();
     public IReadOnlyCollection<Personaje> Personajes => _personajes;
@@ -20,5 +20,15 @@ public class Pelicula
 
         Titulo = titulo;
         FechaEstreno = fechaEstreno;
+    }
+
+    public void AgregarPersonaje(Personaje personaje)
+    {
+        if (personaje == null) throw new ArgumentNullException(nameof(personaje));
+
+        if (_personajes.Add(personaje))
+        {
+            personaje.AgregarAparicionEnPelicula(this);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace StarWarsCRUD.Domain.Enums;
 
-public enum ModeloNave
+public enum TipoNave
 {
     // Imperio
     TIE_Fighter,

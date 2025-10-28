@@ -6,10 +6,7 @@ public class Planeta
 {
     public int Id { get; private set; }
     public string Nombre { get; private set; }
-
     public TipoClima? Clima { get; private set; }
-
-    // Concurrency token (opcional) para evitar manejo multiples en simultaneo
     public byte[]? RowVersion { get; private set; }
 
     // --- Relación 1:N (Lado "Uno") ---
@@ -30,7 +27,6 @@ public class Planeta
     public void AgregarPersonajeNativo(Personaje personaje)
     {
         if (personaje == null) throw new ArgumentNullException(nameof(personaje));
-
         _personajesNativos.Add(personaje);
     }
 

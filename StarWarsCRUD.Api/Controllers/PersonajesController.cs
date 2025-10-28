@@ -10,6 +10,7 @@ namespace StarWarsCRUD.Api.Controllers;
 [Route("api/[controller]")]
 public class PersonajesController : Controller
 {
+    /*
     [HttpPost]
     public async Task<IActionResult> CreatePersonaje([FromBody] CreatePersonajeRequest request)
     {
@@ -70,4 +71,5 @@ public class PersonajesController : Controller
 
         return _mapper.Map<PersonajeResponse>(personaje);
     }
+    */
 }
