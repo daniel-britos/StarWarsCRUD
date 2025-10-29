@@ -9,8 +9,7 @@ public class NaveConfiguration : IEntityTypeConfiguration<Nave>
     public void Configure(EntityTypeBuilder<Nave> builder)
     {
         builder.HasKey(n => n.Id);
-
-        // Concurrencia (RowVersion)
+        
         builder.Property(n => n.RowVersion)
             .IsRowVersion();
 

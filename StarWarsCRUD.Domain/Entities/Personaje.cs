@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using StarWarsCRUD.Domain.Common.Validators;
 /* 
  diseño de dominio (DDD
  */
@@ -7,9 +9,10 @@ namespace StarWarsCRUD.Domain.Entities;
 public class Personaje
 {
     public int Id { get; private set; }
-    // al colocar las propiedades en private set evitamos
-    // que se modifiquen desde fuera de la clase
+    // private set evita que se modifique desde fuera de la clase.
     // no utilizamos [Required] por que ya está en el constructor la validación, tampoco es necesario en el modelbuilder
+    [StringLength(50, ErrorMessage = "El campo {0} debe tener {1} caracteres o menos")]
+    [PrimeraLetraMayuscula]
     public string Nombre { get; private set; }
     public string? Descripcion { get; private set; }
     // RowVersion es una columna
