@@ -1,15 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using StarWarsCRUD.Api.DTOs.Request.Create;
 using StarWarsCRUD.Api.DTOs.Response;
 using StarWarsCRUD.Domain.Entities;
+using StarWarsCRUD.Infrastructure.Data;
 
 namespace StarWarsCRUD.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PersonajesController : Controller
+public class PersonajesController : ControllerBase
 {
+    private readonly ApplicationDbContext _context;
+    private readonly ILogger<PersonajesController> _logger;
+    public PersonajesController(ApplicationDbContext context,
+                                 ILogger<PersonajesController> logger)
+    {
+        _context = context;
+        _logger = logger;
+    }
+
+    [HttpGet("/lista-personajes")]
+    public async Task<IEnumerable<Personaje>> Get()
+    {
+        _logger.LogError("Error: Método Get() llamado en PersonajesController.");
+        _logger.LogCritical("Crítico: Método Get() llamado en PersonajesController.");
+        _logger.LogTrace("Traza: Método Get() llamado en PersonajesController.");
+        _logger.LogDebug("Iniciando el proceso para obtener la lista de personajes.");
+        _logger.LogInformation("Obteniendo la lista de personajes.");
+        return await _context.Personajes.ToListAsync();
+    }
+
     /*
     [HttpPost]
     public async Task<IActionResult> CreatePersonaje([FromBody] CreatePersonajeRequest request)
