@@ -1,97 +1,119 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StarWarsCRUD.Api.DTOs.Request.Create;
 using StarWarsCRUD.Api.DTOs.Response;
 using StarWarsCRUD.Domain.Entities;
 using StarWarsCRUD.Infrastructure.Data;
+using System.Reflection.Metadata.Ecma335;
 
 namespace StarWarsCRUD.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/personajes")] //https://localhost:7020/api/Personajes
 public class PersonajesController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
     private readonly ILogger<PersonajesController> _logger;
+    private readonly IMapper _mapper;
     public PersonajesController(ApplicationDbContext context,
-                                 ILogger<PersonajesController> logger)
+                                ILogger<PersonajesController> logger,          
+                                IMapper mapper)
     {
         _context = context;
         _logger = logger;
+        _mapper = mapper;
     }
 
-    [HttpGet("/lista-personajes")]
-    public async Task<IEnumerable<Personaje>> Get()
+    // Get con datos de columnas combinados
+    [HttpGet] 
+    public async Task<IEnumerable<PersonajeResponse>> Get()
     {
-        _logger.LogError("Error: Método Get() llamado en PersonajesController.");
-        _logger.LogCritical("Crítico: Método Get() llamado en PersonajesController.");
-        _logger.LogTrace("Traza: Método Get() llamado en PersonajesController.");
-        _logger.LogDebug("Iniciando el proceso para obtener la lista de personajes.");
-        _logger.LogInformation("Obteniendo la lista de personajes.");
-        return await _context.Personajes.ToListAsync();
+        //Sin Automapper
+        //var personajes = await _context.Personajes.ToListAsync();
+        //var personajesDto = personajes.Select(p => new PersonajeResponse{ Id = p.Id,
+        //                                                Nombre = $"{p.Nombre} {p.Descripcion}"});
+
+        // Con Automapper
+        var personajes = await _context.Personajes.ToListAsync();
+        //Tomá la lista de personajes que viene de la base de datos y convertímela en una lista del tipo PersonajeResponse usando AutoMapper.
+        var personajesDto = _mapper.Map<IEnumerable<PersonajeResponse>>(personajes);
+
+        return personajesDto;
     }
 
     /*
-    [HttpPost]
-    public async Task<IActionResult> CreatePersonaje([FromBody] CreatePersonajeRequest request)
+[HttpGet("{id:int}", Name = "GetPersonajes")]
+public async Task<ActionResult<Personaje>> Get(int id)
+{
+    var personaje = await _context.Personajes.FirstOrDefaultAsync(p => p.Id == id);
+
+    if (personaje == null)
     {
-        // ✅ Validación automática vía DataAnnotations (ModelState)
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        // ✅ Verificar existencia de Planeta
-        var planeta = await _context.Planetas
-            .FirstOrDefaultAsync(p => p.Id == request.PlanetaNatalId);
-
-        if (planeta == null)
-            return NotFound($"El planeta con ID {request.PlanetaNatalId} no existe.");
-
-        // ✅ Crear instancia de Personaje (regla de negocio en constructor)
-        var personaje = new Personaje(request.Nombre, planeta);
-
-        // ✅ Asignar opcionales
-        if (!string.IsNullOrWhiteSpace(request.Descripcion))
-            personaje.ActualizarDescripcion(request.Descripcion);
-
-        if (!string.IsNullOrWhiteSpace(request.Historia))
-            personaje.ActualizarHistoria(request.Historia);
-
-        // ✅ Agregar relaciones N:N (Películas)
-        if (request.PeliculaIds?.Any() == true)
-        {
-            var peliculas = await _context.Peliculas
-                .Where(p => request.PeliculaIds.Contains(p.Id))
-                .ToListAsync();
-
-            foreach (var pelicula in peliculas)
-                personaje.AgregarAparicionEnPelicula(pelicula);
-        }
-
-        // ✅ Persistir cambios
-        _context.Personajes.Add(personaje);
-        await _context.SaveChangesAsync();
-
-        // ✅ Preparar respuesta
-        var response = _mapper.Map<PersonajeResponse>(personaje);
-
-        // ✅ Devolver respuesta 201 Created con ruta del recurso
-        return CreatedAtAction(nameof(GetById), new { id = personaje.Id }, response);
+        return NotFound();
     }
 
-    // ✅ Endpoint auxiliar: obtener personaje por id (para CreatedAtAction)
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<PersonajeResponse>> GetById(int id)
+    return personaje;
+}
+
+[HttpPost("create")]
+public async Task<ActionResult> Post(CreatePersonajeRequest createPersonajeRequest)
+{
+    // Convertimos el DTO de entrada (CreatePersonajeRequest) a la entidad Personaje usando AutoMapper
+    var personaje = _mapper.Map<Personaje>(createPersonajeRequest);
+
+    // Indicamos al DbContext que queremos agregar este nuevo personaje a la base de datos
+    _context.Add(personaje);
+
+    // Guardamos los cambios en la base de datos (INSERT). 
+    // EF Core ejecuta la operación pendiente (Add) y genera el ID del nuevo registro
+    await _context.SaveChangesAsync();
+
+    // Convertimos la entidad guardada (con su nuevo Id) a un DTO para devolverlo al cliente
+    var personajeDto = _mapper.Map<CreatePersonajeRequest>(personaje);
+
+    // Retornamos HTTP 201 (Created) + la URL donde se puede consultar el nuevo recurso
+    return CreatedAtRoute("GetPersonajes", new { id = personaje.Id }, personajeDto);
+}
+
+[HttpPut("{id:int}")] // api/personajes/id
+public async Task<ActionResult> Put(int id, CreatePersonajeRequest createPersonajeRequest)
+{
+    var personaje = _mapper.Map<Personaje>(createPersonajeRequest);
+    personaje.Id = id;
+    _context.Update(personaje);
+    await _context.SaveChangesAsync();
+    return Ok();
+}
+
+[HttpGet("{id:int}", Name = "GetPersonajes")]
+public async Task<ActionResult<Personaje>> GetById(int id)
+{
+    var personaje = await _context.Personajes
+                                  .FirstOrDefaultAsync(p => p.Id == id);
+    if ( personaje is null )
     {
-        var personaje = await _context.Personajes
-            .Include(p => p.PlanetaNatal)
-            .Include(p => p.Peliculas)
-            .FirstOrDefaultAsync(p => p.Id == id);
-
-        if (personaje == null)
-            return NotFound();
-
-        return _mapper.Map<PersonajeResponse>(personaje);
+        return NotFound();
     }
-    */
+
+    var personajeDto = _mapper.Map<PersonajeResponse>(personaje);
+
+    return personaje;
+}
+
+[HttpDelete("{id:int}")]
+public async Task<ActionResult> Delete(int id)
+{
+    var registrosBorrados = await _context.Personajes
+                                          .Where(p => p.Id == id)
+                                          .ExecuteDeleteAsync();
+    if (registrosBorrados == 0)
+    {
+        return NotFound();
+    }
+
+    return Ok();
+}
+*/
 }

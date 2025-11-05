@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using StarWarsCRUD.Api.Middlewares;
 using StarWarsCRUD.Domain.Interfaces;
 using StarWarsCRUD.Infrastructure.Data;
@@ -22,6 +23,12 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 // (Importante) También necesitamos este servicio para que ProblemDetails funcione correctamente
 builder.Services.AddProblemDetails();
 
+builder.Services.AddScoped<IPersonajeRepository, PersonajeRepository>();
+
+builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(Program)); // aca le estoy diciendo "busca las configuraciones en el proyecto con la clase Program
+
 // fin del area de configuración de servicios
 
 var app = builder.Build();
@@ -37,6 +44,8 @@ app.UseExceptionHandler();
 //app.UseBloqueaPeticion();
 
 //app.MapGet("/", () => "Hello World!");
+
+app.MapControllers();
 
 app.Run();
  

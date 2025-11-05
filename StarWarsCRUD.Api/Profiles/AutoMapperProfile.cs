@@ -1,16 +1,26 @@
-﻿/*
-using StarWarsCRUD.Api.DTOs.Request.Create;
+﻿using StarWarsCRUD.Api.DTOs.Request.Create;
 using StarWarsCRUD.Api.DTOs.Response;
 using StarWarsCRUD.Domain.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-
+using AutoMapper;
 
 namespace StarWarsCRUD.Api.Profiles;
 
-public class AutoMapperProfile : Profiles
+public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
+        CreateMap<Personaje, PersonajeResponse>();
+
+        // create 
+        CreateMap<CreatePersonajeRequest, Personaje>();
+
+        // configuración de respuesta con transformación de datos.
+        //CreateMap<Personaje, PersonajeResponse>()
+        //         .ForMember(dto => dto.Nombre, 
+        //          config => config.MapFrom(p => $"{p.Nombre} {p.Descripcion}"));
+
+        /*
         // Domain -> Response
         CreateMap<Planeta, PlanetaSummary>();
         CreateMap<Planeta, PlanetaResponse>()
@@ -37,6 +47,6 @@ public class AutoMapperProfile : Profiles
 
         // NOTA: mapping de CreatePersonajeRequest -> Personaje requiere resolver Planeta desde DB
         // y relaciones N:N normalmente se sincronizan en el service/handler; por eso no se incluye aquí.
+        */
     }
 }
-*/

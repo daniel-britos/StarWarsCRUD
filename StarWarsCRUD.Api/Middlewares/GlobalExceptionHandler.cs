@@ -22,7 +22,7 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
         {
             Status = StatusCodes.Status500InternalServerError,
             Title = "Error interno del servidor",
-            Detail = "Ocurrió un error inesperado. Por favor, intente de nuevo más tarde."
+            Detail = $"Ocurrió un error inesperado. Por favor, intente de nuevo más tarde: {exception.ToString()}"
         };
 
         // (Opcional) Si estás en Desarrollo, se puede añadir más detalles:

@@ -7,7 +7,7 @@ namespace StarWarsCRUD.Domain.Entities;
 
 public class Personaje
 {
-    public int Id { get; private set; }
+    public int Id { get; set; }
     // private set evita que se modifique desde fuera de la clase.
     // no utilizamos [Required] por que ya está en el constructor la validación, tampoco es necesario en el modelbuilder
     [StringLength(50, ErrorMessage = "El campo {0} debe tener {1} caracteres o menos")]
